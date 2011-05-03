@@ -1,3 +1,2 @@
-module Miniredirector
-  # Your code goes here...
-end
+require "MiniRedirector/middleware"
+require "MiniRedirector/railtie"
