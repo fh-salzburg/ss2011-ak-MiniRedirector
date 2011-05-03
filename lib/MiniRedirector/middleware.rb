@@ -1,12 +1,15 @@
 module Miniredirector
   class Middleware
+    
     def initialize(app)
       @app = app
     end
 
     def call(env)
-      if env["PATH_INFO"] == "/"
-        [301, {'Location' => 'http://google.com'}, []] #[status, headers, []]
+      destination = env["PATH_INFO"]
+      if Miniredirector.redirects.key?(destination)
+        #[status, headers, response]
+        [301, {'Location' => Miniredirector.redirects[destination]}, ["You are going to be redirected"]] 
       else
         @app.call(env)
       end

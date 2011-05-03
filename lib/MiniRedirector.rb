@@ -1,5 +1,5 @@
 require 'MiniRedirector/middleware'
-require 'MiniRedirector/railtie'
+require 'MiniRedirector/railtie' if defined?(Rails::Railtie)
 
 module Miniredirector
   # Your code goes here...
