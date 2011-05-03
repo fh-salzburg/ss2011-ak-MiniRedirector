@@ -1,0 +1,3 @@
+module Miniredirector
+  # Your code goes here...
+end
