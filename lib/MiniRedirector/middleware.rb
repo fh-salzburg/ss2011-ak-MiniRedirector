@@ -5,10 +5,15 @@ module Miniredirector
     end
     
     def call env
-      header = {}
-      header["Location"] = "http://www.google.com/"
-      status = 301
-      response = ["ftw!"]
+      path = env["PATH_INFO"]
+      if Miniredirector.redirects.key? path
+        header = {}
+        header["Location"] = Miniredirector.redirects[path]
+        status = 301
+        response = ["ftw!"]
+      else
+        status, header, response = @app.call(env)
+      end
       
       [status, header, response]
     end
